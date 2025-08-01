@@ -30,7 +30,7 @@ header .logo{
     height: auto;
     width: 150px;
 }
-.headerRow{
+nav{
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -55,7 +55,6 @@ main .outerBorder{
 .innerBorder{
     height: inherit;
     width: inherit;
-    padding: 2rem;
     background-color: #A44141;
     border: 5px solid #A44141;
     border-radius: 10px;
@@ -65,6 +64,7 @@ form h2{
     margin-top: 0.5rem;
     margin-bottom: 0 !important;
 }
+
 
 @media screen and (max-width: 500px){
     .logo img{
@@ -76,5 +76,9 @@ form h2{
     }
     header{
         justify-content: space-evenly;
+    }
+    .outerBorder{
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }

@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+header{
+    height: 10%;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #480E0E;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+header .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+}
+.logo img{
+    height: auto;
+    width: 150px;
+}
+.headerRow{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+main{
+    display: flex;
+    height: 90%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #A44141;
+}
+main .outerBorder{
+    width: fit-content;
+    height: fit-content;
+    background-color: #480E0E;
+    padding: 0.5rem; /*controla el border*/
+    border-radius: 10px;
+}
+
+.innerBorder{
+    height: inherit;
+    width: inherit;
+    padding: 2rem;
+    background-color: #A44141;
+    border: 5px solid #A44141;
+    border-radius: 10px;
+}
+
+form h2{
+    margin-top: 0.5rem;
+    margin-bottom: 0 !important;
+}
+

@@ -1,0 +1,48 @@
+input {
+  color: white;
+  background: 0;
+  border: 0;
+  outline: none;
+  width: 80vw;
+  max-width: 400px;
+  font-size: 1.5rem !important;
+  transition: padding 0.3s 0.2s ease;
+
+  &:focus {
+    padding-bottom: 10px;
+  }
+  &::placeholder{
+    color: #480E0E;
+  }
+
+  &:focus + .line {
+    &:after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.field {
+  position: relative;
+  margin-bottom: 2rem;
+  .line {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -5px;
+    background: #480E0E;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      float: right;
+      width: 100%;
+      height: 3px;
+      
+      transform: scalex(0);
+      transition: transform 0.5s ease;
+      
+      background: #e76767;
+    }
+  }
+}

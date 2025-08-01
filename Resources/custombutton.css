@@ -1,0 +1,45 @@
+.custom-button {
+    color: white;
+    align-items: center;
+    appearance: none;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#b18409 0 -3px 0 inset;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    overflow: hidden;
+
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform; /*le avisa al buscador que las propiedades  cambiarán, hace queel componente se renderice en una capa propia y permite animaciones mas fluidas*/
+
+    background-color: #D59F0A;
+    border: none;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+/*button anims*/
+.custom-button:hover {
+    transform: translateY(-2px);
+}
+
+.custom-button:active {
+    box-shadow: #b18409 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+
+.custom-button img {
+    height: 30px;
+    width: auto;
+}

@@ -81,6 +81,7 @@ form h2{
         justify-content: space-evenly;
     }
     .outerBorder{
+        width: 80vw;
         margin-left: 10px;
         margin-right: 10px;
     }

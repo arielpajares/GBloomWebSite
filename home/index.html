@@ -42,5 +42,20 @@
             </article>
         </div>
     </main>
+    <script>
+        const registerBtn = document.getElementById("register");
+        const loginBtn = document.getElementById("login");
+        if (registerBtn){
+            registerBtn.addEventListener("click", () =>{
+                window.location.href = "../auth/register.html";
+            })
+        }
+
+        if (loginBtn){
+            loginBtn.addEventListener("click", () =>{
+                window.location.href = "../auth/login.html";
+            })
+        }
+    </script>
 </body>
 </html>

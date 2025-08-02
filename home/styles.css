@@ -65,6 +65,9 @@ form h2{
     margin-bottom: 0 !important;
 }
 
+.customContainer{
+    background-color: #480E0E !important;                                                                                                                                                                           
+}
 
 @media screen and (max-width: 500px){
     .logo img{

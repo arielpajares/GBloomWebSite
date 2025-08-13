@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Manejo de páginas de error
+ErrorDocument 403 /errors/403.html
+ErrorDocument 404 /errors/404.html
+
+# Redirigir raíz (/) a /home (visible en URL)
+RewriteRule ^$ /home/ [R=302,L]
+
+# Excepciones para no reescribir estas carpetas
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} !^/php/
+RewriteCond %{REQUEST_URI} !^/errors/
+
+# Reescribir todo lo demás a /public (sin cambiar URL visible)
+RewriteRule ^(.*)$ public/$1 [L]

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        article#listas {
+            display: grid;
+            justify-items: center;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+        li {
+            margin-right: 1rem;
+        }
+    </style>
+    <!-- MTM4NDE5Nzc4MDIzMDExNTM3OA.GA32ot.IvKC1M9b9_KzYtUleURGCsSVloSPHncD0-4y_g -->
+</head>
+
+<body>
+    <h1 id="dia">Hoy es...</h1>
+    <h2 id="primera">La primera oracion le toca a...</h2>
+    <h2 id="ultima">La ultima oracion le toca a...</h2>
+
+    <script>
+        let seminario = new Date("2025-06-17T16:59:59");
+        let hoy = new Date();
+        let conteo = daysWhen(seminario, hoy);
+        let lecciones;
+        let dia;
+        let primera;
+        let ultima;
+
+        function daysWhen(past, today) {
+            return Math.floor((today.getTime() - past.getTime())/(1000*60*60*24));
+        }
+
+        function dayHoursWhen(past, today) {
+            let dias = Math.floor((today.getTime() - past.getTime())/(1000*60*60*24));
+            let horas = Math.floor((today.getTime() - past.getTime())/(1000*60*60))%24;
+            if (dias > 0) {
+                return dias + " Dias " + horas + " Horas";
+            } else {
+                return horas + " Horas";
+            }
+        }
+
+        function diaLeToca(primeraOracion, ultimaOracion) {
+            let primera;
+            let ultima;
+            switch (primeraOracion) {
+                case 0:
+                    primera = "La primera oracion le toca a Nahuel";
+                    break;
+                case 1:
+                    primera = "La primera oracion le toca a Ariel";
+                    break;
+                case 2:
+                    primera = "La primera oracion le toca a Luana";
+                    break;
+                default:
+                    break;
+            }
+            switch (ultimaOracion) {
+                case 0:
+                    ultima = "La ultima oracion le toca a Nahuel";
+                    break;
+                case 1:
+                    ultima = "La ultima oracion le toca a Ariel";
+                    break;
+                case 2:
+                    ultima = "La ultima oracion le toca a Luana";
+                    break;
+                default:
+                    break;
+            }
+            return [primera, ultima];
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            dia = document.querySelector("#dia");
+            primera = document.querySelector("#primera");
+            ultima = document.querySelector("#ultima");
+
+            if ((hoy.getDay() == 2 || hoy.getDay() == 3) && hoy.getHours() < 18) {
+                let futureDate = new Date(hoy);
+                futureDate.setHours(17);
+                futureDate.setMinutes(0);
+                let horasFaltantes = Math.floor((futureDate.getTime() - hoy.getTime())/(1000*60*60));
+                let minutosFaltantes = Math.floor((futureDate.getTime() - hoy.getTime())/(1000*60));
+                if (horasFaltantes > 0) {
+                    dia.textContent = "Hoy hay Seminario en " + horasFaltantes + " Horas";
+                } else {
+                    dia.textContent = "Hoy hay Seminario en " + minutosFaltantes + " Minutos";
+                }
+            } else {
+                if ((hoy.getDay() == 3 && hoy.getHours() > 18) || hoy.getDay() > 3) {
+                    let futureDate = new Date(hoy);;
+                    let diasFaltantes = 9 - hoy.getDay();
+                    futureDate.setDate(futureDate.getDate() + diasFaltantes);
+                    futureDate.setHours(17);
+                    dia.textContent = "Faltan " + dayHoursWhen(hoy, futureDate) + " para Seminario";
+                }
+                else {
+                    if ((hoy.getDay() == 2 && hoy.getHours() > 18) || hoy.getDay() < 2) {
+                        let futureDate = new Date(hoy);
+                        let diasFaltantes = 3 - hoy.getDay();
+                        futureDate.setDate(futureDate.getDate() + diasFaltantes);
+                        futureDate.setHours(17);
+                        dia.textContent = "Faltan " + dayHoursWhen(hoy, futureDate) + " para Seminario";
+                    }
+                }
+            }
+
+            if (hoy.getDay() <= 2 && hoy.getHours() < 18) {
+                lecciones = (Math.floor((conteo + 2) / 7)) * 2 - 2;
+                let primeraOracion = lecciones * 2;
+                if (primeraOracion == 0) {
+                    primeraOracion = 2;
+                } else {
+                    primeraOracion--;
+                }
+                primeraOracion = primeraOracion % 3;
+                let ultimaOracion = (lecciones * 2) % 3;
+                let oraciones = diaLeToca(primeraOracion, ultimaOracion);
+                primera.textContent = oraciones[0];
+                ultima.textContent = oraciones[1];
+            } else {
+                if (hoy.getDay() <= 3) {
+                    lecciones = Math.floor(conteo / 7) * 2 - 1;
+                    let primeraOracion = (lecciones * 2) % 3;
+                    if (primeraOracion == 0) {
+                        primeraOracion = 2;
+                    } else {
+                        primeraOracion--;
+                    }
+                    let ultimaOracion = (lecciones * 2) % 3;
+                    let oraciones = diaLeToca(primeraOracion, ultimaOracion);
+                    primera.textContent = oraciones[0];
+                    ultima.textContent = oraciones[1];
+                }
+                else {
+                    lecciones = (Math.floor(conteo / 7) + 1) * 2 - 2;
+                    let primeraOracion = (lecciones * 2) % 3;
+                    if (primeraOracion == 0) {
+                        primeraOracion = 2;
+                    } else {
+                        primeraOracion--;
+                    }
+                    let ultimaOracion = (lecciones * 2) % 3;
+                    let oraciones = diaLeToca(primeraOracion, ultimaOracion);
+                    primera.textContent = oraciones[0];
+                    ultima.textContent = oraciones[1];
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>

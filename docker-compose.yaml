@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apache_web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./www:/var/www/html
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot_client
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - ./www:/var/www/html
+    entrypoint: ""
+    command:
+      - certbot
+      - certonly
+      - --webroot
+      - --webroot-path=/var/www/html
+      - --email
+      - tu-email@dominio.com
+      - --agree-tos
+      - --no-eff-email
+      - -d
+      - goldenblossom.ddns.net
+
+volumes:
+  certbot-etc:
+  certbot-var:
